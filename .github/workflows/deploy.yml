@@ -1,4 +1,4 @@
-name: Deployment
+name: Deploy to STaging
 
 on:
   push:
@@ -6,9 +6,15 @@ on:
       - main
 
 jobs:
-  deployment:
+  deploy:
     runs-on: ubuntu-latest
-    environment: production
     steps:
-      - name: deploy
-        # ...deployment-specific steps
+      - name: Deploy to Staging
+        id: deploy
+        # Add your deployment steps here
+
+      - name: Send Deployment Protection Rule
+        id: send-protection-rule
+        run: |
+          # Replace with your actual URL and payload
+          curl -X POST -H "Content-Type: application/json" -d '{"deployment_protection_rule": true}' https://your-custom-url.com
